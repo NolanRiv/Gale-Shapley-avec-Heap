@@ -1,0 +1,17 @@
+{
+    "best_permutation": [
+        "UniversityA",
+        "UniversityB",
+        "UniversityC",
+        "UniversityD",
+        "UniversityE"
+    ],
+    "best_matching": {
+        "Student1": "UniversityB",
+        "Student2": null,
+        "Student3": null,
+        "Student4": null,
+        "Student5": "UniversityA"
+    },
+    "best_score": 0
+}

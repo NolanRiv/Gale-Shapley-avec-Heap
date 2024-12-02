@@ -1,0 +1,6 @@
+id,name,preferences
+1,Student1,"['UniversityA','UniversityB','UniversityC','UniversityD','UniversityE']"
+2,Student2,"['UniversityE','UniversityD','UniversityC','UniversityB','UniversityA']"
+3,Student3,"['UniversityB','UniversityA','UniversityD','UniversityE','UniversityC']"
+4,Student4,"['UniversityD','UniversityB','UniversityA','UniversityE','UniversityC']"
+5,Student5,"['UniversityC','UniversityA','UniversityE','UniversityD','UniversityB']"

@@ -43,7 +43,7 @@ def main():
         # Mettre à jour les préférences de l'étudiant 1 pour cette permutation
         students[0]["preferences"] = perm
         # Exécuter l'algorithme de Gale-Shapley
-        matching, score = gale_shapley(universities, students, perm)
+        matching, score = gale_shapley(universities, students, student1_permutations)
         all_matchings.append(matching)
         all_scores.append(score)
 

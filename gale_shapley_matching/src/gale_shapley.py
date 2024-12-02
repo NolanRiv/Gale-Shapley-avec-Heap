@@ -27,7 +27,6 @@ def gale_shapley(universities, students, student_permutations):
                         current_match = matched_students[student_name]
 
                         student_preferences = next(s for s in students if s['name'] == student_name)['preferences']
-
                         if university['name'] not in student_preferences or current_match not in student_preferences:
                             print(f"Error: {university['name']} or {current_match} not found in preferences for {student_name}")
                             continue
@@ -39,25 +38,26 @@ def gale_shapley(universities, students, student_permutations):
             else:
                 unmatched_universities.append(university)
 
-            # Calculer le "score" pour l'étudiant 1
-            university_for_student1 = matched_students[students[0]['name']]
+        unmatched_students = [student for student, university in matched_students.items() if university is None]
+        remaining_universities = [university['name'] for university in universities if university['name'] not in matched_students.values()]
+        for student_name, university_name in zip(unmatched_students, remaining_universities):
+            matched_students[student_name] = university_name
 
-            if university_for_student1 is None:
-                # Si l'étudiant 1 n'a pas été apparié, donner un score très élevé
-                score = float("inf")
+        # Calculer le "score" pour l'étudiant 1 après l'algorithme
+        university_for_student1 = matched_students[students[0]['name']]
+
+        if university_for_student1 is None:
+            score = float("inf")
+        else:
+            if university_for_student1 in original_preferences:
+                score = original_preferences.index(university_for_student1)
             else:
-                # Vérifier si l'université appariée est dans les préférences de l'étudiant
-                if university_for_student1 in students[0]['preferences']:
-                    score = students[0]['preferences'].index(university_for_student1)
-                else:
-                    # Si l'université appariée n'est pas dans les préférences, donner un score élevé
-                    score = float("inf")
+                score = float("inf")
 
-            # Si cette permutation donne un meilleur score pour l'étudiant 1, on la garde
-            if score < best_score:
-                best_score = score
-                best_matching = matched_students.copy()
+        if score < best_score:
+            best_score = score
+            best_matching = matched_students.copy()
 
-            students[0]['preferences'] = original_preferences
+        students[0]['preferences'] = original_preferences
 
     return best_matching, best_score

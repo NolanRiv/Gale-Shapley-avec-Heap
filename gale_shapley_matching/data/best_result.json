@@ -8,10 +8,10 @@
     ],
     "best_matching": {
         "Student1": "UniversityB",
-        "Student2": null,
-        "Student3": null,
-        "Student4": null,
-        "Student5": "UniversityA"
+        "Student2": "UniversityD",
+        "Student3": "UniversityA",
+        "Student4": "UniversityE",
+        "Student5": "UniversityC"
     },
     "best_score": 0
 }

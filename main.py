@@ -14,18 +14,6 @@ def main():
     universities = load_data(universities_file)
     students = load_data(students_file)
 
-    # Vérifier les données chargées
-    if not universities:
-        print(f"Erreur : Aucun université n'a été chargée depuis {universities_file}.")
-        return
-    if not students:
-        print(f"Erreur : Aucun étudiant n'a été chargé depuis {students_file}.")
-        return
-
-    # Vérification du contenu
-    print(f"Universités chargées : {universities}")
-    print(f"Étudiants chargés : {students}")
-
     # Générer les permutations pour l'étudiant 1
     try:
         student1_preferences = students[0]["preferences"]
@@ -39,11 +27,13 @@ def main():
     all_matchings = []
     all_scores = []
 
+    original_preferences = students[0]["preferences"]
+
     for perm in student1_permutations:
         # Mettre à jour les préférences de l'étudiant 1 pour cette permutation
         students[0]["preferences"] = perm
         # Exécuter l'algorithme de Gale-Shapley
-        matching, score = gale_shapley(universities, students, student1_permutations)
+        matching, score = gale_shapley(universities, students, original_preferences, perm)
         all_matchings.append(matching)
         all_scores.append(score)
 

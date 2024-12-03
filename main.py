@@ -24,16 +24,16 @@ def main():
 
     student1_permutations = generate_student_permutations(student1_preferences)
 
-    # Appliquer Gale-Shapley à chaque permutation
+    # Contenir les résultats de chaque permutations
     all_matchings = []
     all_scores = []
 
+    # Stocker la préférence sincère
     original_preferences = students[0]["preferences"]
 
+    # Tester toutes les permutations pour l'étudiant 1 et les sauvegarde
     for perm in student1_permutations:
-        # Mettre à jour les préférences de l'étudiant 1 pour cette permutation
         students[0]["preferences"] = perm
-        # Exécuter l'algorithme de Gale-Shapley
         matching, score = gale_shapley(universities, students, original_preferences, perm)
         all_matchings.append(matching)
         all_scores.append(score)
@@ -41,6 +41,7 @@ def main():
     # Analyser les résultats
     best_result = compare_matchings(student1_permutations, all_matchings, all_scores)
 
+    # Vérifie la stabilité du meilleur résultat obtenu
     if(is_stable_matching(universities, students, best_result["best_permutation"], best_result["best_matching"])):
 
         # Afficher le meilleur appariement

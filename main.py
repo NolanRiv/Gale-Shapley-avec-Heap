@@ -2,6 +2,7 @@ from gale_shapley_matching.src.utils import load_data
 from gale_shapley_matching.src.heap import generate_student_permutations
 from gale_shapley_matching.src.gale_shapley import gale_shapley
 from gale_shapley_matching.src.matching import compare_matchings, save_results_to_csv, save_results_to_json
+from gale_shapley_matching.src.stable_verification import is_stable_matching
 
 def main():
     # Chemins des fichiers
@@ -40,16 +41,21 @@ def main():
     # Analyser les résultats
     best_result = compare_matchings(student1_permutations, all_matchings, all_scores)
 
-    # Afficher le meilleur appariement
-    print("Meilleure permutation et appariement:")
-    print("Permutation:", best_result["best_permutation"])
-    print("Matching:", best_result["best_matching"])
-    print("Score de l'étudiant 1:", best_result["best_score"])
+    if(is_stable_matching(universities, students, best_result["best_permutation"], best_result["best_matching"])):
 
-    # Sauvegarder les résultats
-    save_results_to_csv(output_csv, student1_permutations, all_matchings, all_scores)
-    save_results_to_json(output_json, best_result)
-    print(f"Résultats sauvegardés dans {output_csv} et {output_json}")
+        # Afficher le meilleur appariement
+        print("Meilleure permutation et appariement:")
+        print("Permutation:", best_result["best_permutation"])
+        print("Matching:", best_result["best_matching"])
+        print("Score de l'étudiant 1:", best_result["best_score"])
+
+        # Sauvegarder les résultats
+        save_results_to_csv(output_csv, student1_permutations, all_matchings, all_scores)
+        save_results_to_json(output_json, best_result)
+        print(f"Résultats sauvegardés dans {output_csv} et {output_json}")
+
+    else:
+        print("La meilleure permutation trouvée est instable")
 
 if __name__ == "__main__":
     main()

@@ -35,3 +35,39 @@ def is_stable_matching(universities, students, best_perm, best_matching):
 
     print("L'appariement est stable.")
     return True
+
+def is_stable_after_swaps(universities, students, matching):
+    """
+    Vérifie la stabilité de l'appariement après les swaps.
+    """
+    blocking_pairs = []
+
+    # Convertir les préférences en dictionnaires pour un accès rapide
+    student_preferences = {s['name']: s['preferences'] for s in students}
+    university_preferences = {u['name']: u['preferences'] for u in universities}
+
+    # Vérifier chaque étudiant et université
+    for student, current_university in matching.items():
+        # Obtenir les préférences actuelles de l'étudiant et de son université
+        student_pref_list = student_preferences[student]
+        current_rank_student = student_pref_list.index(current_university)
+
+        for preferred_university in student_pref_list[:current_rank_student]:
+            # Vérifier si l'université préfère cet étudiant à son partenaire actuel
+            university_pref_list = university_preferences[preferred_university]
+            current_partner = next(
+                (s for s, u in matching.items() if u == preferred_university),
+                None
+            )
+
+            # Vérifier les rangs dans les préférences de l'université
+            student_rank_in_university = university_pref_list.index(student)
+            current_partner_rank_in_university = (
+                university_pref_list.index(current_partner) if current_partner else float('inf')
+            )
+
+            # Si l'université préfère cet étudiant et cet étudiant préfère cette université, c'est une paire bloquante
+            if student_rank_in_university < current_partner_rank_in_university:
+                blocking_pairs.append((student, preferred_university))
+
+    return len(blocking_pairs) == 0, blocking_pairs

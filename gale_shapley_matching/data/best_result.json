@@ -1,17 +1,17 @@
 {
     "best_permutation": [
-        "UniversityA",
-        "UniversityB",
-        "UniversityC",
-        "UniversityD",
-        "UniversityE"
+        "University2",
+        "University4",
+        "University3",
+        "University5",
+        "University1"
     ],
     "best_matching": {
-        "Student1": "UniversityB",
-        "Student2": "UniversityD",
-        "Student3": "UniversityA",
-        "Student4": "UniversityE",
-        "Student5": "UniversityC"
+        "Student1": "University4",
+        "Student2": "University2",
+        "Student3": "University5",
+        "Student4": "University3",
+        "Student5": "University1"
     },
     "best_score": 1
 }

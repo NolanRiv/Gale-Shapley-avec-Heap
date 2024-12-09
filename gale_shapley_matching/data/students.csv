@@ -1,6 +1,6 @@
 id,name,preferences
-1,Student1,"['UniversityA','UniversityB','UniversityC','UniversityD','UniversityE']"
-2,Student2,"['UniversityE','UniversityD','UniversityC','UniversityB','UniversityA']"
-3,Student3,"['UniversityB','UniversityA','UniversityD','UniversityE','UniversityC']"
-4,Student4,"['UniversityD','UniversityB','UniversityA','UniversityE','UniversityC']"
-5,Student5,"['UniversityC','UniversityA','UniversityE','UniversityD','UniversityB']"
+1,Student1,"['University2', 'University4', 'University3', 'University5', 'University1']"
+2,Student2,"['University4', 'University3', 'University2', 'University5', 'University1']"
+3,Student3,"['University4', 'University5', 'University2', 'University1', 'University3']"
+4,Student4,"['University2', 'University4', 'University3', 'University5', 'University1']"
+5,Student5,"['University1', 'University3', 'University5', 'University4', 'University2']"
